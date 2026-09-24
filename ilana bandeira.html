@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#B79D93">
+  <link rel="icon" type="image/png" href="icon.png">
+  <meta name="description" content="Psicoterapia e avaliação neuropsicológica com Ilana Bandeira. Um espaço acolhedor para compreender o que você sente e cuidar da sua saúde emocional.">
+  <title>Ilana Bandeira | Psicóloga & Neuropsicóloga</title>
+
+  <!-- Tipografia inspirada na identidade visual enviada:
+       Cormorant Garamond para títulos/editorial + Montserrat para textos. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --taupe:#B79D93;
+      --taupe-dark:#8A6A5E;
+      --brown:#4D342A;
+      --ink:#2C1C17;
+      --cream:#F7F3F1;
+      --mist:#E8E5E8;
+      --white:#FFFDFC;
+      --line:rgba(77,52,42,.14);
+      --shadow:0 24px 70px rgba(44,28,23,.12);
+      --radius:28px;
+      --serif:"Cormorant Garamond", Georgia, serif;
+      --sans:"Montserrat", Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--cream);
+      font-family:var(--sans);
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(1160px,calc(100% - 40px));margin:auto}
+
+    /* Header */
+    header{
+      position:fixed;
+      z-index:50;
+      top:0;left:0;right:0;
+      padding:18px 0;
+      transition:.35s ease;
+    }
+    header.scrolled{
+      background:rgba(247,243,241,.92);
+      backdrop-filter:blur(18px);
+      box-shadow:0 8px 30px rgba(44,28,23,.07);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:30px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      font-weight:700;
+      letter-spacing:-.04em;
+    }
+    .brand-mark{
+      
+      width:38px;height:38px;border:2px solid var(--taupe-dark);
+      border-radius:50%;position:relative;
+    }
+    .brand-mark:before,.brand-mark:after{
+      content:"";position:absolute;border:2px solid var(--taupe-dark);
+      border-radius:50%;
+    }
+    .brand-mark:before{width:12px;height:22px;left:11px;top:6px;transform:rotate(32deg)}
+    .brand-mark:after{width:20px;height:10px;left:6px;top:15px;transform:rotate(-18deg)}
+    .brand-name{font-size:14px;line-height:1.05}
+    .brand-name span{display:block;font-weight:500;font-size:9px;letter-spacing:.08em;color:var(--taupe-dark);margin-top:3px}
+    nav{display:flex;align-items:center;gap:28px;font-size:12px;font-weight:600}
+    nav a{opacity:.75;transition:.2s}
+    nav a:hover{opacity:1;color:var(--taupe-dark)}
+    .nav-cta,.btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border:0;cursor:pointer;
+      background:var(--brown);color:white;
+      padding:14px 20px;border-radius:999px;
+      font-size:12px;font-weight:700;
+      box-shadow:0 12px 25px rgba(77,52,42,.18);
+      transition:.25s ease;
+    }
+    .nav-cta:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(77,52,42,.24)}
+    .menu{display:none;background:none;border:0;font-size:24px;color:var(--brown);cursor:pointer}
+
+    /* Hero */
+    .hero{
+      min-height:100vh;
+      display:flex;align-items:center;
+      padding:130px 0 70px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 78% 48%, rgba(183,157,147,.42), transparent 30%),
+        linear-gradient(120deg,#F7F3F1 0%,#ECE8EA 100%);
+    }
+    .hero:before{
+      content:"";
+      position:absolute;width:620px;height:620px;
+      border:1px solid rgba(138,106,94,.20);
+      border-radius:48% 52% 50% 44%;
+      right:-180px;top:10%;
+      transform:rotate(20deg);
+    }
+    .hero-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;gap:40px;position:relative;z-index:2;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:11px;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--taupe-dark);
+      margin-bottom:18px;
+    }
+    .eyebrow:before{content:"";width:28px;height:1px;background:var(--taupe-dark)}
+    h1{
+      font-family:var(--serif);
+      font-size:clamp(64px,8vw,108px);
+      line-height:.78;
+      letter-spacing:-.055em;
+      font-weight:600;
+      margin:0 0 28px;
+    }
+    h1 em{font-weight:600;color:var(--taupe-dark)}
+    .hero-copy{
+      max-width:520px;font-size:17px;line-height:1.75;color:#634D43;
+      margin:0 0 30px;
+    }
+    .hero-copy strong{color:var(--ink)}
+    .hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .btn-light{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:14px 18px;border-radius:999px;border:1px solid var(--line);
+      font-size:12px;font-weight:700;background:rgba(255,255,255,.45);
+      transition:.2s;
+    }
+    .btn-light:hover{background:white;transform:translateY(-2px)}
+    .crp{margin-top:24px;font-size:10px;letter-spacing:.1em;color:#806D65}
+
+    .hero-visual{position:relative;min-height:650px;display:flex;align-items:end;justify-content:center}
+    .portrait-bg{
+      position:absolute;width:520px;height:590px;
+      border-radius:48% 48% 32% 32%;
+      background:linear-gradient(145deg,#D4C2BB,#AE8F82);
+      bottom:0;
+      transform:rotate(-4deg);
+      opacity:.72;
+    }
+    .portrait{
+      position:relative;width:min(570px,100%);height:650px;
+      object-fit:cover;object-position:center top;
+      border-radius:45% 45% 24% 24%;
+      mix-blend-mode:multiply;
+      filter:saturate(.94) contrast(1.02);
+      box-shadow:var(--shadow);
+    }
+    .floating-card{
+      position:absolute;right:-15px;bottom:45px;
+      width:190px;padding:18px;border:1px solid rgba(255,255,255,.7);
+      background:rgba(255,253,252,.82);backdrop-filter:blur(15px);
+      border-radius:20px;box-shadow:var(--shadow);
+    }
+    .floating-card b{display:block;font-family:var(--serif);font-size:24px;line-height:1}
+    .floating-card span{display:block;font-size:10px;line-height:1.5;color:#725D54;margin-top:8px}
+
+    /* Sections */
+    section{padding:105px 0}
+    .section-head{max-width:700px;margin-bottom:52px}
+    .kicker{
+      font-size:10px;text-transform:uppercase;letter-spacing:.2em;
+      font-weight:700;color:var(--taupe-dark);margin-bottom:12px;
+    }
+    h2{
+      font-family:var(--serif);
+      font-size:clamp(46px,5vw,72px);
+      line-height:.92;letter-spacing:-.045em;
+      font-weight:600;margin:0;
+    }
+    .lead{font-size:15px;line-height:1.8;color:#6E5B53;margin-top:20px;max-width:620px}
+
+    .pain{
+      background:var(--white);
+      position:relative;
+    }
+    .pain-grid{
+      display:grid;grid-template-columns:1fr 1.25fr;gap:70px;align-items:start;
+    }
+    .pain-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .pain-item{
+      padding:25px;border:1px solid var(--line);border-radius:20px;
+      background:#FBF9F8;min-height:145px;transition:.3s;
+    }
+    .pain-item:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(44,28,23,.08)}
+    .num{font-family:var(--serif);font-size:28px;color:var(--taupe-dark)}
+    .pain-item p{font-size:12px;line-height:1.65;margin:10px 0 0;color:#604E46}
+
+    .about{background:var(--mist)}
+    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center}
+    .about-photo{
+      width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;
+      border-radius:35% 35% 18% 18%;box-shadow:var(--shadow);
+      filter:saturate(.9);
+    }
+    .signature{
+      font-family:var(--serif);font-style:italic;font-size:44px;color:var(--taupe-dark);
+      margin-top:28px;
+    }
+    .credentials{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .pill{
+      border:1px solid rgba(77,52,42,.16);border-radius:999px;padding:10px 14px;
+      font-size:10px;font-weight:600;color:#604D45;background:rgba(255,255,255,.35)
+    }
+
+    .process{background:var(--cream)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .step{
+      padding:34px;border-radius:25px;background:var(--white);
+      border:1px solid var(--line);position:relative;overflow:hidden;
+    }
+    .step:after{
+      content:"";position:absolute;width:100px;height:100px;border-radius:50%;
+      right:-40px;bottom:-40px;background:var(--taupe);opacity:.18;
+    }
+    .step-number{font-family:var(--serif);font-size:52px;color:var(--taupe-dark);line-height:1}
+    .step h3{font-family:var(--serif);font-size:30px;margin:24px 0 10px}
+    .step p{font-size:12px;line-height:1.7;color:#705C54}
+
+    .quote{
+      background:var(--brown);color:white;text-align:center;
+      position:relative;overflow:hidden;
+    }
+    .quote:before{
+      content:"“";position:absolute;font-family:var(--serif);font-size:300px;
+      opacity:.07;left:4%;top:-90px;
+    }
+    .quote-inner{max-width:850px;margin:auto;position:relative}
+    .quote h2{font-size:clamp(42px,5vw,68px)}
+    .quote p{font-size:14px;line-height:1.8;opacity:.82;margin:25px auto 32px;max-width:650px}
+    .btn-white{background:white;color:var(--brown);box-shadow:none}
+
+    .faq{background:var(--white)}
+    .faq-wrap{max-width:850px;margin:auto}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-question{
+      width:100%;display:flex;justify-content:space-between;align-items:center;
+      gap:20px;background:none;border:0;padding:25px 0;text-align:left;
+      font-family:var(--serif);font-size:25px;color:var(--ink);cursor:pointer;
+    }
+    .faq-icon{font-family:var(--sans);font-size:24px;font-weight:300;color:var(--taupe-dark)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .faq-answer p{font-size:12px;line-height:1.8;color:#6B5750;padding:0 35px 25px 0;margin:0}
+    .faq-item.open .faq-answer{max-height:180px}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+
+    footer{
+      padding:55px 0 90px;background:#E4DDDA;
+      color:#5D4941;
+    }
+    .footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:end}
+    .footer-brand{font-family:var(--serif);font-size:40px;line-height:.85}
+    .footer-brand small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.15em;margin-top:10px}
+    .footer-right{text-align:right;font-size:10px;line-height:1.8}
+    .bottom-bar{
+      position:fixed;z-index:40;bottom:18px;left:50%;transform:translateX(-50%);
+      background:rgba(77,52,42,.96);color:white;border-radius:999px;
+      padding:6px 7px 6px 16px;display:flex;align-items:center;gap:13px;
+      box-shadow:0 16px 45px rgba(44,28,23,.25);backdrop-filter:blur(10px);
+      font-size:10px;font-weight:600;
+    }
+    .bottom-bar .btn{padding:11px 17px;background:#F7F3F1;color:var(--brown);box-shadow:none;font-size:10px}
+    .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:850px){
+      header{padding:12px 0}
+      nav{display:none;position:absolute;top:68px;left:20px;right:20px;padding:20px;
+          background:rgba(247,243,241,.97);border-radius:20px;box-shadow:var(--shadow);flex-direction:column;align-items:flex-start}
+      nav.active{display:flex}
+      .menu{display:block}
+      .nav-cta{display:none}
+      .hero{padding-top:105px}
+      .hero-grid,.pain-grid,.about-grid{grid-template-columns:1fr}
+      .hero-visual{min-height:510px;margin-top:20px}
+      .portrait{height:510px}
+      .portrait-bg{width:370px;height:460px}
+      .floating-card{right:0}
+      .pain-grid{gap:40px}
+      .steps{grid-template-columns:1fr}
+      section{padding:75px 0}
+      .footer-grid{flex-direction:column;align-items:flex-start}
+      .footer-right{text-align:left}
+    }
+    @media(max-width:520px){
+      .container{width:min(100% - 28px,1160px)}
+      h1{font-size:68px}
+      .hero-copy{font-size:14px}
+      .pain-list{grid-template-columns:1fr}
+      .pain-item{min-height:auto}
+      .hero-visual{min-height:430px}
+      .portrait{height:430px}
+      .portrait-bg{width:300px;height:390px}
+      .floating-card{width:155px;padding:14px;bottom:15px}
+      .floating-card b{font-size:20px}
+      .bottom-bar{width:calc(100% - 22px);justify-content:space-between}
+      .bottom-bar span{max-width:170px}
+    }
+  </style>
+</head>
+
+<body>
+<header id="header">
+  <div class="container nav">
+    <a href="#" class="brand" aria-label="Ilana Bandeira">
+      
+      <img src="logo.png" alt="Logo Ilana Bandeira" style="height: 38px; width: auto; object-fit: contain;">
+      <div class="brand-name">Ilana Bandeira<span>NEUROPSICÓLOGA</span></div>
+    </a>
+    <nav id="nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#agendar">Agendar</a>
+    </nav>
+    <a href="#agendar" class="nav-cta">Agendar atendimento</a>
+    <button class="menu" id="menu" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Psicologia & Neuropsicologia</div>
+        <h1>Você merece<br><em>se entender.</em></h1>
+        <p class="hero-copy">
+          Um espaço de <strong>escuta, acolhimento e cuidado</strong> para compreender
+          melhor o que você sente, atravessar momentos difíceis e construir novas formas
+          de lidar com a vida.
+        </p>
+        <div class="hero-actions">
+          <a href="#agendar" class="btn">Quero começar meu processo →</a>
+          <a href="#sobre" class="btn-light">Conheça a Ilana</a>
+        </div>
+        <div class="crp">CRP 11/15491</div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="portrait-bg"></div>
+        <img class="portrait" src="01.jpg" alt="Ilana Bandeira, psicóloga e neuropsicóloga">
+        <div class="floating-card">
+          <b>Um lugar para você.</b>
+          <span>Sem julgamentos. Com acolhimento, escuta e respeito pela sua história.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain">
+    <div class="container pain-grid">
+      <div class="section-head reveal">
+        <div class="kicker">Talvez seja hora de olhar para você</div>
+        <h2>Nem tudo precisa ser carregado sozinho.</h2>
+        <p class="lead">
+          Às vezes, por fora parece que está tudo bem. Mas por dentro você sente que
+          alguma coisa precisa mudar.
+        </p>
+      </div>
+      <div class="pain-list">
+        <article class="pain-item reveal"><div class="num">01</div><p>Você sente que está constantemente cansado(a) emocionalmente?</p></article>
+        <article class="pain-item reveal"><div class="num">02</div><p>Pensa demais, se cobra muito e tem dificuldade para desacelerar?</p></article>
+        <article class="pain-item reveal"><div class="num">03</div><p>Está passando por uma fase de mudanças, conflitos ou decisões importantes?</p></article>
+        <article class="pain-item reveal"><div class="num">04</div><p>Sente que alguns padrões continuam se repetindo mesmo quando tenta mudar?</p></article>
+        <article class="pain-item reveal"><div class="num">05</div><p>Tem dificuldade para compreender o que sente ou colocar isso em palavras?</p></article>
+        <article class="pain-item reveal"><div class="num">06</div><p>Cuida de todo mundo, mas percebe que deixou você mesmo(a) em segundo plano?</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="container about-grid">
+      <div class="reveal">
+        <img class="about-photo" src="ilana-2.jpg" alt="Ilana Bandeira">
+      </div>
+      <div class="reveal">
+        <div class="kicker">Prazer, eu sou a Ilana</div>
+        <h2>Por trás da profissional, existe uma pessoa que também acredita no poder da escuta.</h2>
+        <p class="lead">
+          Meu propósito é oferecer um ambiente seguro e acolhedor para que você possa
+          falar sobre sua história, compreender suas experiências e olhar para si com
+          mais gentileza.
+        </p>
+        <p class="lead">
+          Cada pessoa possui uma história única. Por isso, o processo é construído com
+          respeito à sua individualidade, ao seu momento e às suas necessidades.
+        </p>
+        <div class="credentials">
+          <span class="pill">CRP 11/15491</span>
+          <span class="pill">Psicologia</span>
+          <span class="pill">Neuropsicologia</span>
+          <span class="pill">Atendimento humanizado</span>
+        </div>
+        <div class="signature">Ilana Bandeira</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="como-funciona">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="kicker">Começar pode ser mais simples do que parece</div>
+        <h2>Seu primeiro passo.</h2>
+        <p class="lead">Você não precisa saber exatamente o que dizer. Basta dar o primeiro passo.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step-number">01</div>
+          <h3>Entre em contato</h3>
+          <p>Clique no botão de WhatsApp e fale com a equipe para tirar suas dúvidas e verificar a disponibilidade.</p>
+        </article>
+        <article class="step reveal">
+          <div class="step-number">02</div>
+          <h3>Agende seu horário</h3>
+          <p>Encontramos o melhor horário disponível para você e explicamos como funciona o atendimento.</p>
+        </article>
+        <article class="step reveal">
+          <div class="step-number">03</div>
+          <h3>Comece seu processo</h3>
+          <p>A partir da primeira sessão, vocês constroem juntos um caminho de cuidado, compreensão e desenvolvimento.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote" id="agendar">
+    <div class="container quote-inner reveal">
+      <div class="kicker" style="color:#D8C3BB">Um convite para você</div>
+      <h2>Você não precisa esperar chegar ao limite para começar a cuidar de si.</h2>
+      <p>
+        Se alguma parte desta página fez sentido para você, talvez seja um bom momento
+        para conversar.
+      </p>
+      <a class="btn btn-white whatsapp" href="#" target="_blank" rel="noopener">
+        Quero conversar sobre atendimento →
+      </a>
+    </div>
+  </section>
+
+  <section class="faq" id="duvidas">
+    <div class="container faq-wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Dúvidas frequentes</div>
+        <h2>Antes de começar, você pode querer saber...</h2>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question">Preciso estar passando por um problema grave para fazer terapia?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Não. A psicoterapia também pode ser um espaço de autoconhecimento, prevenção, desenvolvimento pessoal e compreensão de situações que estão afetando sua rotina.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question">Como funciona a primeira sessão?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>A primeira conversa é um momento para conhecer sua demanda, entender seu contexto e explicar como o processo poderá funcionar. Você não precisa chegar com tudo organizado.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question">O atendimento é presencial ou online?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Edite este texto de acordo com a modalidade realmente oferecida pela profissional antes de publicar a página.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question">Como faço para agendar?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Clique em qualquer botão de atendimento desta página e envie uma mensagem pelo WhatsApp. A equipe poderá informar horários, valores e demais detalhes.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand">Ilana Bandeira<small>PSICÓLOGA • NEUROPSICÓLOGA</small></div>
+    </div>
+    <div class="footer-right">
+      CRP 11/15491<br>
+      © <span id="year"></span> Ilana Bandeira. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>
+
+<div class="bottom-bar">
+  <span>Pronta(o) para dar o primeiro passo?</span>
+  <a href="#" class="btn whatsapp">Agendar</a>
+</div>
+
+<script>
+  /*
+    ============================================================
+    CONFIGURAÇÃO RÁPIDA
+    ============================================================
+    Troque somente o número abaixo pelo WhatsApp da Ilana.
+    Formato: código do país + DDD + número, sem espaços, + ou traços.
+    Exemplo: 5588999999999
+  */
+  const WHATSAPP = "5588999062665";
+
+  const message = encodeURIComponent(
+    "Olá, Ilana! Vim pela página e gostaria de saber mais sobre os atendimentos e horários disponíveis."
+  );
+
+  document.querySelectorAll(".whatsapp").forEach(link => {
+    link.href = `https://wa.me/${WHATSAPP}?text=${message}`;
+  });
+
+  // Header ao rolar
+  const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 30);
+  });
+
+  // Menu mobile
+  const menu = document.getElementById("menu");
+  const nav = document.getElementById("nav");
+  menu.addEventListener("click", () => nav.classList.toggle("active"));
+  nav.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => nav.classList.remove("active"));
+  });
+
+  // FAQ
+  document.querySelectorAll(".faq-question").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.parentElement;
+      document.querySelectorAll(".faq-item").forEach(other => {
+        if (other !== item) other.classList.remove("open");
+      });
+      item.classList.toggle("open");
+    });
+  });
+
+  // Animações
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
